@@ -64,7 +64,11 @@ void KMP(string s,string p)
   while(i<=(n-m)){
           while(s[i+q]==p[q] && q<m)
            q++; 
-          if(q==m) ans++;
+          if(q==m) 
+          {
+             cout<<"index of "<<ans+1<<" match: "<< i << endl; 
+             ans++;
+          }
           int shift = q-h[max(0,q-1)];
           i = i + max(shift,1);
           q = h[max(0,q-1)];
