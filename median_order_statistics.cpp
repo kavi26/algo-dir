@@ -4,37 +4,42 @@ using namespace std;
 int random(int, int);
 int Partition(int*, int, int);
 int Randomized_partition(int*, int, int);
-void Randomized_quickSort(int*, int, int);
+
+int Randomized_select(int*A, int p, int r, int i) // finding i'th smallest number
+{
+  if(p == r)
+   return A[p];
+   
+  int q = Randomized_partition(A,p,r);
+  int k = q - p + 1;
+  /* // Test 
+  cout<<"p:" << p <<" q or j: " << q << " r: " << r << " i: " << i << " k: " << k <<endl;
+  for(int i = 0; i < 10; i++)
+  cout << A[i] << " ";
+  cout << endl;
+  */
+  if(i == k)
+   return  A[q]; // k is rank of A[q]
+  
+  else if(i < k)
+       return Randomized_select(A,p,q-1,i);
+       else
+       return Randomized_select(A,q+1,r,i-k);
+}
 
 int main()
 {
+  
   int A[10] = {2,1,5,0,9,4,8,11,3,19};
-  int B[5] = {16, 2, 77, 40, 12071};
   
-  Randomized_quickSort(A, 0, 9);
-  Randomized_quickSort(B,0,4);
-  
-  for(int i = 0; i < 10; i++)
-   cout << A[i] << " ";
-  
-   cout << endl;
-  
-  for(int i = 0; i < 5; i++)
-   cout << B[i] << " ";
-   
-   cout << endl;
+  cout << Randomized_select(A,0,9,11) << endl;
+
   
   system("pause");
   return 0;
 }
 
-void Randomized_quickSort(int*A, int p, int r){
- if(p < r){
-  int q = Randomized_partition(A,p,r); // This returns an index j, such that all elements before index j are less than all elements after j
-  Randomized_quickSort(A,p,q);
-  Randomized_quickSort(A,q+1,r);     
- }     
-}
+/* Following code is used directly from quickSort implementation */
 
 int Randomized_partition(int*A, int p, int r){
  int i = random(p, r); // returns a random number between p and r     
@@ -52,7 +57,7 @@ int Partition(int*A, int p, int r){
 int pivot = A[r];
 int i = p;
 int j = r;
-
+// cout<<"A[r]: "<<A[r]<<endl; //Test
 while(true){
  while(A[j] > pivot && j >= p) j-- ;
  while(A[i] < pivot && i <= r) i++ ;
