@@ -15,6 +15,7 @@ int bitcount(int n){ // count number of 1's in bit representation of n
 int main()
 {
    cout<<bitcount(16)<<endl;
+  
 
   system("pause");
   return 0;
