@@ -11,7 +11,7 @@ int exponentiation(int a, int b){
  }   
  
  if(b % 2 != 0){
-  int c = exponentiation(a, (b-1)/2);
+  int c = exponentiation(a, (b-1)/2) ;
   return c*c*a;     
  }
 }
