@@ -20,7 +20,6 @@ pair<int, int> extended_Euclidean_algorithm(int a, int b){
  
  pair<int, int> solution(s.second, s.first - q * s.second);
  return solution;
-    
 }
 
 int main()
